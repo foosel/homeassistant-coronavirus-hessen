@@ -4,7 +4,6 @@
 
 ## Setup
 
-<!--
 There are two ways to set this up:
 
 #### 1. Using HACS
@@ -20,11 +19,10 @@ Then install the "Coronavirus Hessen" integration.
 If you use this method, your component will always update to the latest version.
 
 #### 2. Manual
--->
 
 Copy the folder `custom_components/coronavirus_hessen` to `<ha_config_dir>/custom_components/`. When you are done you should have `<ha_config_dir>/custom_components/coronavirus_hessen/__init__.py`, `<ha_config_dir>/custom_components/coronavirus_hessen/sensor.py` and so on.
 
-<!-- If you use this method then you'll need to keep an eye on this repository to check for updates. -->
+If you use this method then you'll need to keep an eye on this repository to check for updates.
 
 ## Configuration:
 
@@ -41,6 +39,6 @@ In Home Assistant:
 
   * [ ] Find out why the created sensors don't show up in the integration overview
   * [ ] Find out if there's a possibility to select more than one county during configuration to have all created sensors under *one* integration entry
-  * [ ] Make this thing work with HACS for easier installation/updating
+  * [x] Make this thing work with HACS for easier installation/updating
 
 *This is my first integration for Home Assistant ever and I basically learned how to even begin to do this stuff while writing this. I'm happy for any pointers as to how to improve things.*
