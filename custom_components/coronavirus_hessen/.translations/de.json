@@ -1,0 +1,16 @@
+{
+    "config": {
+      "title": "Coronavirus Hessen",
+      "step": {
+        "user": {
+          "title": "Wähle einen Landkreis",
+          "data": {
+            "country": "Landkreis"
+          }
+        }
+      },
+      "abort": {
+        "already_configured": "Dieser Landkreis ist bereits konfiguriert."
+      }
+    }
+}

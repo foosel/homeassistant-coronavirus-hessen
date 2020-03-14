@@ -1,0 +1,16 @@
+{
+    "config": {
+      "title": "Coronavirus Hessen",
+      "step": {
+        "user": {
+          "title": "Pick a county to monitor",
+          "data": {
+            "country": "County"
+          }
+        }
+      },
+      "abort": {
+        "already_configured": "This county is already configured."
+      }
+    }
+}
