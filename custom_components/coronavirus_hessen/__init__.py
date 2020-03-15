@@ -22,7 +22,14 @@ PLATFORMS = ["sensor"]
 async def async_setup(hass: HomeAssistant, config: dict):
     """Set up the Coronavirus Hessen component."""
     # Make sure coordinator is initialized.
-    await get_coordinator(hass)
+    coordinator = await get_coordinator(hass)
+
+    async def handle_refresh(call):
+        _LOGGER.info("Refreshing Coronavirus Hessen data...")
+        await coordinator.async_refresh()
+    
+    hass.services.async_register(DOMAIN, "refresh", handle_refresh)
+
     return True
 
 
