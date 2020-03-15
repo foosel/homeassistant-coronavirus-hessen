@@ -57,7 +57,7 @@ async def get_coordinator(hass):
         return hass.data[DOMAIN]
 
     async def async_get_data():
-        with async_timeout.timeout(10):
+        with async_timeout.timeout(30):
             response = await aiohttp_client.async_get_clientsession(hass).get(ENDPOINT)
             raw_html = await response.text()
 
@@ -99,7 +99,7 @@ async def get_coordinator(hass):
         logging.getLogger(__name__),
         name=DOMAIN,
         update_method=async_get_data,
-        update_interval=timedelta(hours=12), # 12h as the data apparently only updates once per day anyhow
+        update_interval=timedelta(hours=6),
     )
     await hass.data[DOMAIN].async_refresh()
     return hass.data[DOMAIN]
