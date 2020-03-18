@@ -76,12 +76,12 @@ async def get_coordinator(hass):
         # Counties
         for row in rows[1:-1]:
             line = row.select("td")
-            if len(line) != 4:
+            if len(line) != 2:
                 continue
 
             try:
                 county = line[0].text.strip()
-                cases_str = line[3].text.strip()
+                cases_str = line[1].text.strip()
                 if len(cases_str) and cases_str != "-":
                     cases = int(cases_str)
                 else:
