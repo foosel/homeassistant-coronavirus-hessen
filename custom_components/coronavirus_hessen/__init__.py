@@ -76,7 +76,7 @@ async def get_coordinator(hass):
         # Counties
         for row in rows[1:-1]:
             line = row.select("td")
-            if len(line) != 2:
+            if len(line) != 3:
                 continue
 
             try:
