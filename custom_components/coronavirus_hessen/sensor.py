@@ -11,6 +11,8 @@ from .const import ATTRIBUTION, OPTION_TOTAL
 
 _LOGGER = logging.getLogger(__name__)
 
+ATTR_DEATHS = "deaths"
+
 async def async_setup_entry(hass, config_entry, async_add_entities):
     """Defer sensor setup to the shared sensor module."""
     coordinator = await get_coordinator(hass)
@@ -48,11 +50,11 @@ class CoronaHessenSensor(Entity):
 
     @property
     def state(self):
-        return self.coordinator.data[self.county]
+        return self.coordinator.data[self.county]["cases"]
 
     @property
     def device_state_attributes(self):
-        return {ATTR_ATTRIBUTION: ATTRIBUTION}
+        return {ATTR_ATTRIBUTION: ATTRIBUTION, ATTR_DEATHS: self.coordinator.data[self.county]["deaths"]}
 
     async def async_added_to_hass(self):
         """When entity is added to hass."""

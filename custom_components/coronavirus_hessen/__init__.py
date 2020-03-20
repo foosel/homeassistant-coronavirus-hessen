@@ -75,23 +75,30 @@ async def get_coordinator(hass):
 
         for row in rows[1:]:
             line = row.select("td")
-            if len(line) != 3:
+            if len(line) != 4:
                 continue
 
             try:
                 county = line[0].text.strip()
                 cases_str = line[1].text.strip()
+                deaths_str = line[3].text.strip()
+
                 if len(cases_str) and cases_str != "-":
                     cases = int(cases_str)
                 else:
                     cases = 0
+
+                if len(deaths_str) and death_str != "-":
+                    deaths = int(deaths_str)
+                else:
+                    deaths = 0
             except ValueError:
                 _LOGGER.error("Error processing line {}, skipping".format(line))
                 continue
 
             if county == "Gesamt":
                 county = OPTION_TOTAL
-            result[county] = cases
+            result[county] = dict(cases=cases, deaths=deaths)
 
         _LOGGER.debug("Corona Hessen: {!r}".format(result))
         return result
