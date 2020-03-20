@@ -88,7 +88,7 @@ async def get_coordinator(hass):
                 else:
                     cases = 0
 
-                if len(deaths_str) and death_str != "-":
+                if len(deaths_str) and deaths_str != "-":
                     deaths = int(deaths_str)
                 else:
                     deaths = 0
