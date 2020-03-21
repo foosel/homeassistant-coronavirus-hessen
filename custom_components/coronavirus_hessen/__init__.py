@@ -80,20 +80,10 @@ async def get_coordinator(hass):
 
             try:
                 county = line[0].text.strip()
-                cases_str = line[1].text.strip()
-                deaths_str = line[3].text.strip()
-
-                if len(cases_str) and cases_str != "-":
-                    cases = int(cases_str)
-                else:
-                    cases = 0
-
-                if len(deaths_str) and deaths_str != "-":
-                    deaths = int(deaths_str)
-                else:
-                    deaths = 0
-            except ValueError:
-                _LOGGER.error("Error processing line {}, skipping".format(line))
+                cases = parse_num(line[1].text.strip())
+                deaths = parse_num(line[3].text.strip())
+            except:
+                _LOGGER.exception("Error processing line {}, skipping".format(line))
                 continue
 
             if county == "Gesamt":
@@ -112,3 +102,9 @@ async def get_coordinator(hass):
     )
     await hass.data[DOMAIN].async_refresh()
     return hass.data[DOMAIN]
+
+
+def parse_num(s, t=int):
+    if len(s) and s != "-":
+        return t(s.replace(".", "").replace(",", "."))
+    return 0
