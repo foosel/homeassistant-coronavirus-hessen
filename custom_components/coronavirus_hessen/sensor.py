@@ -41,6 +41,10 @@ class CoronaHessenSensor(Entity):
         return self._name
     
     @property
+    def unique_id(self):
+        return self._name
+    
+    @property
     def icon(self):
         return "mdi:biohazard"
     
