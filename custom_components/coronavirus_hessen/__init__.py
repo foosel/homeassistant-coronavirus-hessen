@@ -75,13 +75,13 @@ async def get_coordinator(hass):
 
         for row in rows[1:]:
             line = row.select("td")
-            if len(line) != 4:
+            if len(line) != 5:
                 continue
 
             try:
                 county = line[0].text.strip()
                 cases = parse_num(line[1].text.strip())
-                deaths = parse_num(line[3].text.strip())
+                deaths = parse_num(line[2].text.strip())
             except:
                 _LOGGER.exception("Error processing line {}, skipping".format(line))
                 continue
