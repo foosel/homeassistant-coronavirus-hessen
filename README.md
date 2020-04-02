@@ -57,7 +57,7 @@ The integration offers one servce, `coronavirus_hessen.refresh`, which you may u
 
 ## TODO
 
-  * [ ] Find out why the created sensors don't show up in the integration overview
+  * [x] Find out why the created sensors don't show up in the integration overview
   * [ ] Find out if there's a possibility to select more than one county during configuration to have all created sensors under *one* integration entry
   * [x] Make this thing work with HACS for easier installation/updating
 
