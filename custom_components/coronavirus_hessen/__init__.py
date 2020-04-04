@@ -86,7 +86,7 @@ async def get_coordinator(hass):
                 _LOGGER.exception("Error processing line {}, skipping".format(line))
                 continue
 
-            if county == "Gesamt":
+            if county == "Gesamtergebnis":
                 county = OPTION_TOTAL
             result[county] = dict(cases=cases, deaths=deaths)
 
