@@ -73,16 +73,16 @@ async def get_coordinator(hass):
         result = dict()
         rows = data.select("article table:first-of-type tr")
 
-        for row in rows[1:]:
+        for row in rows[2:]:
             line = row.select("td")
             if len(line) != 7:
                 continue
 
             try:
-                county = line[0].text.strip()
-                cases = parse_num(line[1].text.strip())
-                hospitalized = parse_num(line[2].text.strip())
-                deaths = parse_num(line[3].text.strip())
+                county = line[0].get_text(" ", strip=True)
+                cases = parse_num(line[1].get_text(" ", strip=True))
+                hospitalized = parse_num(line[2].get_text(" ", strip=True))
+                deaths = parse_num(line[3].get_text(" ", strip=True))
             except:
                 _LOGGER.exception("Error processing line {}, skipping".format(line))
                 continue
