@@ -2,6 +2,7 @@
 
 from datetime import timedelta
 import logging
+import re
 
 import async_timeout
 import asyncio
@@ -18,6 +19,8 @@ from .const import DOMAIN, ENDPOINT, OPTION_TOTAL
 _LOGGER = logging.getLogger(__name__)
 
 PLATFORMS = ["sensor"]
+
+HYPHEN_PATTERN = re.compile(r"- (.)")
 
 async def async_setup(hass: HomeAssistant, config: dict):
     """Set up the Coronavirus Hessen component."""
@@ -87,8 +90,10 @@ async def get_coordinator(hass):
                 _LOGGER.exception("Error processing line {}, skipping".format(line))
                 continue
 
+            county = sanitize_county(county)
             if county == "Gesamtergebnis":
                 county = OPTION_TOTAL
+
             result[county] = dict(cases=cases, hospitalized=hospitalized, deaths=deaths)
 
         _LOGGER.debug("Corona Hessen: {!r}".format(result))
@@ -109,3 +114,37 @@ def parse_num(s, t=int):
     if len(s) and s != "-":
         return t(s.replace(".", "").replace(",", "."))
     return 0
+
+def sanitize_county(county):
+    """
+    Sanitizes the county.
+
+    The ministry sadly does some horrid stuff to their HTML
+    and has implemented hyphenation manually, leading to
+    some county names now being split in weird ways after
+    extraction.
+
+    The following replacements takes place:
+
+      * "- <upper case letter>" -> "-<upper case letter>"
+      * "- <lower case letter>" -> "<lower case letter>"
+    
+    Examples:
+
+        >>> sanitize_county("LK Main-Kinzig- Kreis")
+        <<< "LK Main-Kinzig-Kreis"
+        >>> sanitize_county("LK Wetterau- kreis")
+        <<< "LK Wetteraukreis"
+        >>> sanitize_county("SK Frankfurt am Main")
+        <<< "SK Frankfurt am Main"
+    """
+
+    def replace(m):
+        letter = m.group(1)
+        if letter.islower():
+            return letter
+        else:
+            return "-{}".format(letter)
+
+    return HYPHEN_PATTERN.sub(replace, county)
+
