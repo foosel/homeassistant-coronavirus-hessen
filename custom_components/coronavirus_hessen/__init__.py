@@ -90,7 +90,7 @@ async def get_coordinator(hass):
                 continue
 
             county = sanitize_county(county)
-            if county == "Gesamtergebnis":
+            if county in ("Gesamtergebnis", "gesamt"):
                 county = OPTION_TOTAL
 
             result[county] = dict(cases=cases, deaths=deaths)
