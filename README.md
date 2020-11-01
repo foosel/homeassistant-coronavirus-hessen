@@ -4,18 +4,22 @@
 
 ![Screenshot of an example configuration using the integration](https://raw.githubusercontent.com/foosel/homeassistant-coronavirus-hessen/master/screenshot.png)
 
-For a look-and-feel as displayed in the screenshot above you'll need to install [lovelace-fold-entity-row](https://github.com/thomasloven/lovelace-fold-entity-row) (available on HACS), create a bunch of sensors and then use a configuration similar to this:
+For a look-and-feel as displayed in the screenshot above you'll need to install [lovelace-multiple-entity-row](https://github.com/benct/lovelace-multiple-entity-row) (available on HACS), create a bunch of sensors and then use a configuration similar to this for each sensor:
 
 ``` yaml
-- type: custom:fold-entity-row
-  head:
-    entity: sensor.coronavirus_hessen
-    secondary_info: last-changed
-  entities:                   
-    - sensor.coronavirus_hessen_offenbach_landkreis
-    - sensor.coronavirus_hessen_main_kinzig_kreis
-    - sensor.coronavirus_hessen_wetteraukreis
-    - sensor.coronavirus_hessen_frankfurt
+- type: custom:multiple-entity-row
+  entity: sensor.coronavirus_hessen
+  entities:
+    - attribute: cases
+      name: Cases
+    - attribute: deaths
+      name: Deaths
+    - attribute: incidence
+      name: Incidence
+  show_state: false
+  icon: 'mdi:biohazard'
+  name: Hessen
+  secondary_info: last-changed
 ```
 
 ## Setup
