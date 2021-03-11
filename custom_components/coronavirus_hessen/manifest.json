@@ -1,6 +1,7 @@
 {
   "domain": "coronavirus_hessen",
   "name": "Coronavirus Hessen",
+  "version": "0.11.2",
   "config_flow": true,
   "documentation": "https://github.com/foosel/homeassistant-coronavirus-hessen",
   "requirements": ["beautifulsoup4==4.8.2"],
