@@ -1,5 +1,5 @@
 """Constants for the Coronavirus Hessen integration."""
 DOMAIN = "coronavirus_hessen"
-ENDPOINT = "https://soziales.hessen.de/gesundheit/infektionsschutz/coronavirus-sars-cov-2/taegliche-uebersicht-der-bestaetigten-sars-cov-2-faelle-hessen"
+ENDPOINT = "https://soziales.hessen.de/Corona/Bulletin/Tagesaktuelle-Zahlen"
 ATTRIBUTION = "Data provided by Hessisches Ministerium für Soziales und Integration"
 OPTION_TOTAL = "total"
