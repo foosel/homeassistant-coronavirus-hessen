@@ -83,9 +83,9 @@ async def get_coordinator(hass):
 
             try:
                 county = line[0].get_text(" ", strip=True)
-                cases = parse_num(line[3].get_text(" ", strip=True))
-                deaths = parse_num(line[4].get_text(" ", strip=True))
-                incidence = parse_num(line[6].get_text(" ", strip=True), t=float)
+                incidence = parse_num(line[1].get_text(" ", strip=True), t=float)
+                cases = parse_num(line[2].get_text(" ", strip=True))
+                deaths = parse_num(line[3].get_text(" ", strip=True))
             except:
                 _LOGGER.exception("Error processing line {}, skipping".format(line))
                 continue
