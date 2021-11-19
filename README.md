@@ -1,3 +1,13 @@
+> ✋ **Unmaintained and replaced**
+>
+> Having to constantly adapt to changes in the scraped HTML structure got annoying when there are better 
+> options available now. Thus, as of November 2021 I've replaced this integration in my own setup with 
+> a bunch of RESTful sensors utilizing the excellent [rki-covid-api](https://github.com/marlon360/rki-covid-api) 
+> by @marlon360 as available on [api.corona-zahlen.org](https://api.corona-zahlen.org).
+>
+> Take a look at [Migration](https://github.com/foosel/homeassistant-coronavirus-hessen/blob/master/migration.md)
+> if you want to do the same switch.
+
 # Coronavirus Hessen
 
 [Home Assistant](https://www.home-assistant.io/) component to scrape the current SARS-CoV-2 data for the German state of Hessen from the [website of the Hessisches Ministerium für Soziales und Integration](https://soziales.hessen.de/gesundheit/infektionsschutz/coronavirus-sars-cov-2/taegliche-uebersicht-der-bestaetigten-sars-cov-2-faelle-hessen).
